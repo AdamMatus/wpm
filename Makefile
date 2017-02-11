@@ -1,6 +1,6 @@
 CC = g++ -std=c++11
 CPPFLAGS = -Wall -g3 -O0
-OBJS = main.o paragraph_reader.o
+OBJS = main.o paragraph_reader.o input_word_reader.o
 
 default: wpm.exe
 
