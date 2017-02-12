@@ -27,7 +27,8 @@ void Input_word_reader::wait_for_key()
   
   if(c == 127 || c == '\b' )
   {
-   typed_word.pop_back(); 
+   if(!typed_word.empty())
+    typed_word.pop_back(); 
   }
   else
   {
