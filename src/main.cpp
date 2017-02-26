@@ -22,30 +22,33 @@ int main()
   std::string str1;
 
   std::string par;
-  while((par = pr.get_next_paragraph()) == "");
-  pf.actualize_paragraph(par);
-
-  std::string str2("");
-
+  
   while(true)
   {
-    iwr.wait_for_key();
-    str2 = iwr.get_typed_word();
+    while((par = pr.get_next_paragraph()) == "");
+    pf.actualize_paragraph(par);
+    std::string str2("");
 
-    if(!str2.compare("exit"))
+    while(!pf.get_paragraph_state())
     {
-      std::cout << "EXIT";
-      break;
-    }
-  
-    std::cout << pf.get_formatted_paragraph(str2);
+      iwr.wait_for_key();
+      str2 = iwr.get_typed_word();
 
-    if(pf.get_word_state())
-    {
-      iwr.acknowledge_received_word();
-      while(std::getchar() != ' ');
-    }
+      if(!str2.compare("exit"))
+      {
+        std::cout << "EXIT";
+        break;
+      }
+    
+      std::cout << pf.get_formatted_paragraph(str2);
 
+      if(pf.get_word_state())
+      {
+        iwr.acknowledge_received_word();
+        while(std::getchar() != ' ');
+      }
+
+    }
   }
 
   return 0;
