@@ -7,11 +7,6 @@
 #include <string>
 #include <sstream>
 
-#include <termios.h>
-#include <unistd.h>
-#include <stdio.h>
-
-
 int main()
 {
   Paragraph_reader pr(std::string("./txts/LOTR1"));
@@ -45,7 +40,6 @@ int main()
       if(pf.get_word_state())
       {
         iwr.acknowledge_received_word();
-        while(std::getchar() != ' ');
       }
 
     }
