@@ -105,7 +105,7 @@ std::string Paragraph_formatter::get_formatted_paragraph(std::string typed_word)
     buffpos = parag_sstream.tellg();
     std::string rest_of_paragraph;
     std::getline(parag_sstream, rest_of_paragraph);
-    if(std::isspace(rest_of_paragraph.at(0))) 
+    if(!rest_of_paragraph.empty() and std::isspace(rest_of_paragraph.at(0))) 
        rest_of_paragraph.erase(rest_of_paragraph.begin());
     formatted_paragraph.append(rest_of_paragraph); 
   }//~formatting not transcirbed part of the paragraph
