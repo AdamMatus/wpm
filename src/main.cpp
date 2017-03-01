@@ -6,9 +6,28 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <atomic>
+
+#include <unistd.h>
+#include <signal.h>
+#include <cstring>
+
+std::atomic<bool> quit(false);
+
+void got_signal(int)
+{
+  quit.store(true);
+}
 
 int main()
 {
+
+  struct sigaction sa;
+  memset(&sa, 0, sizeof(sa));
+  sa.sa_handler = got_signal;
+  sigfillset(&sa.sa_mask);
+  sigaction(SIGINT, &sa, NULL);
+
   Paragraph_reader pr(std::string("./txts/LOTR1"));
   Input_word_reader iwr;
   Paragraph_formatter pf;
@@ -41,9 +60,11 @@ int main()
       {
         iwr.acknowledge_received_word();
       }
-
+      if(quit.load())
+        goto onexit;
     }
   }
 
+onexit:
   return 0;
 }
