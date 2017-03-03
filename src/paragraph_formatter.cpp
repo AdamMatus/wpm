@@ -27,7 +27,6 @@ std::string Paragraph_formatter::get_formatted_paragraph(std::string typed_word)
   parag_sstream.seekg(buffpos);
   //correctly transcripted text
   std::string formatted_paragraph;
-  formatted_paragraph.append("\033c");
 
   //rest of the paragraph
   if(!get_paragraph_state()) //check if all paragraph has been correctly transcribed

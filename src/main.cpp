@@ -2,6 +2,7 @@
 #include "../inc/paragraph_reader.hpp"
 #include "../inc/input_word_reader.hpp"
 #include "../inc/paragraph_formatter.hpp"
+#include "../inc/wpm_timer.hpp"
 
 #include <iostream>
 #include <string>
@@ -31,6 +32,7 @@ int main()
   Paragraph_reader pr(std::string("./txts/LOTR1"));
   Input_word_reader iwr;
   Paragraph_formatter pf;
+  wpm_timer wt; 
 
   std::stringstream ss, ss2;
   std::string str1;
@@ -41,6 +43,7 @@ int main()
   {
     while((par = pr.get_next_paragraph()) == "");
     pf.actualize_paragraph(par);
+    wt.reset_timer();
     std::string str2("");
 
     while(!pf.get_paragraph_state())
@@ -54,6 +57,9 @@ int main()
         break;
       }
     
+      std::cout << "\033c";
+      std::cout << wt.get_wpm_line(pf.get_transripted_text_length());
+      std::cout << std::endl;
       std::cout << pf.get_formatted_paragraph(str2);
 
       if(pf.get_word_state())

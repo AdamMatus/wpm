@@ -14,6 +14,7 @@ class Paragraph_formatter {
     bool get_word_state() { return word_transcripted; }
     void flag_word_transcipted() { word_transcripted= true; }
     void reset_word_transcripted_flag() { word_transcripted= false; }
+    int get_transripted_text_length() {return transcripted.length();}
 
   private:
     std::string transcripted;
