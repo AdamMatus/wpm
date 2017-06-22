@@ -1,4 +1,4 @@
-WPM - words per minutes
+WPM - words per minute.
 
 Linux console aplication for typing practice.
 
