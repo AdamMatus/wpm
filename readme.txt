@@ -1,1 +1,5 @@
-Linux in concole type trainer. Counting WPM(words per minutes) for your typing. Place your plain text book in txt direction to read and type.
+WPM - words per minutes
+
+Linux console aplication for typing practice.
+
+The program is counting WPM (words per minutes) for your typing. Place your plain-text book in ./txt direction and start your typing.
